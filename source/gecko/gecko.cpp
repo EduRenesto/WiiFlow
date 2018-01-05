@@ -20,7 +20,7 @@ bool bufferMessages = true;
 char gprintfBuffer[GPRINTF_SIZE];
 char sdwritebuffer[SDWRITE_SIZE];
 
-static ssize_t __out_write(struct _reent *r __attribute__((unused)), int fd __attribute__((unused)), const char *ptr, size_t len)
+static ssize_t __out_write(struct _reent *r __attribute__((unused)), void* fd __attribute__((unused)), const char *ptr, size_t len)
 {
 	if(geckoinit && ptr)
 	{

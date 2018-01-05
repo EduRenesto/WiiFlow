@@ -1,6 +1,8 @@
 #ifndef _NAND_H_
 #define _NAND_H_
 
+#define _GNU_SOURCE
+
 #include <gccore.h>
 #include <stdio.h>
 #include <unistd.h>

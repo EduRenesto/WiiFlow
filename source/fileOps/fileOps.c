@@ -33,7 +33,7 @@ static u64 folderSize = 0;
 u64 FolderProgressBytes;
 
 // return false if the file doesn't exist
-bool fsop_GetFileSizeBytes(const char *path, size_t *filesize)	// for me stats st_size report always 0 :(
+bool fsop_GetFileSizeBytes(const char *path, u32 *filesize)	// for me stats st_size report always 0 :(
 {
 	FILE *f;
 	size_t size = 0;
@@ -394,4 +394,33 @@ void fsop_MakeFolder(const char *path)
 		return;
 	//gprintf("Folder path to create: %s\n", path);
 	mkdir(path, S_IREAD | S_IWRITE);
+}
+
+bool fsop_GetFileSizeBytes_s(const char *path, size_t *filesize) 
+{
+    u32 fs;
+    bool ret = fsop_GetFileSizeBytes(path, &fs);
+    *filesize =  (size_t) fs;
+    return ret;
+}
+
+u8 *fsop_ReadFile_s(const char *path, size_t *size) 
+{
+    u32 sz = (u32) *size;
+    u8 *ret = fsop_ReadFile(path, sz);
+    *size = (size_t) sz;
+
+    return ret;
+}
+
+void fsop_ReadFileLoc_s(const char *path, const size_t size, void *loc) 
+{
+    u32 sz = (u32) *size;
+    u8 *ret = fsop_ReadFileLoc(path, sz, loc);
+    *size = (size_t) sz;
+}
+
+bool fsop_WriteFile_s(const char *path, const void *mem, const size_t size)
+{
+    return fsop_WriteFile(path, mem, (const u32) size);
 }

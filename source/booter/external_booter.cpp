@@ -109,11 +109,11 @@ void WiiFlow_ExternalBooter(u8 vidMode, bool vipatch, bool countryString, u8 pat
 
 bool ExternalBooter_LoadBins(const char *binDir)
 {
-	extldr_ptr = fsop_ReadFile(fmt("%s/ext_loader.bin", binDir), &extldr_size);
+	extldr_ptr = fsop_ReadFile_s(fmt("%s/ext_loader.bin", binDir), &extldr_size);
 	if(extldr_size == 0 || extldr_ptr == NULL)
 		return false;
 
-	booter_ptr = fsop_ReadFile(fmt("%s/ext_booter.bin", binDir), &booter_size);
+	booter_ptr = fsop_ReadFile_s(fmt("%s/ext_booter.bin", binDir), &booter_size);
 	if(booter_size > 0 && booter_ptr != NULL)
 		return true;
 

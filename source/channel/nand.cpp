@@ -862,7 +862,8 @@ void Nand::CreatePath(const char *path, ...)
 	char *folder = NULL;
 	va_list args;
 	va_start(args, path);
-	if((vasprintf(&folder, path, args) >= 0) && folder)
+    //vasprintf -> vsprintf
+	if((vsprintf(folder, path, args) >= 0) && folder)
 	{
 		if(folder[strlen(folder)-1] == '/')
 			folder[strlen(folder)-1] = 0;

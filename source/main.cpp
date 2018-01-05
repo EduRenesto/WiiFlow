@@ -1,3 +1,4 @@
+#define _GNU_SOURCE /* for strcasestr */
 
 #include <ogc/system.h>
 #include <unistd.h>

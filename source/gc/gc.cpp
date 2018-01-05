@@ -239,7 +239,9 @@ bool Nintendont_GetLoader()
 			AddBootArgument(dol_path);
 			//search for argsboot
 			u32 size;
-			const char *dol_ptr = GetHomebrew(&size);
+            unsigned int sz;
+			const char *dol_ptr = GetHomebrew(&sz);
+            size = (u32) sz;
 			for(u32 i = 0; i < size; i += 0x10)
 			{
 				if(strncmp(dol_ptr + i, "argsboot", 8) == 0)
